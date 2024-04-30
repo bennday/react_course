@@ -79,12 +79,12 @@ function App() {
           <h2>Examples</h2>
           <menu>
             {/* you can use anomonomous arrow functions to pass arguments to the function. You can then pass parameters to handleSelect and it will not be executed immediately when run but instead only the arrow function is defined */}
-            <TabButton onSelect={() => handleSelect("components")}>
+            <TabButton isSelected={selectedTopic === 'components'} onSelect={() => handleSelect("components")}>
               Components
             </TabButton>
-            <TabButton onSelect={() => handleSelect("jsx")}>JSX</TabButton>
-            <TabButton onSelect={() => handleSelect("props")}>Props</TabButton>
-            <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
+            <TabButton isSelected={selectedTopic === 'jsx'} onSelect={() => handleSelect("jsx")}>JSX</TabButton>
+            <TabButton isSelected={selectedTopic === 'props'} onSelect={() => handleSelect("props")}>Props</TabButton>
+            <TabButton isSelected={selectedTopic === 'components'} onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
 
           {/* you can use the && operator to conditionally render elements */}
