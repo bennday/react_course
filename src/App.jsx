@@ -44,34 +44,8 @@ function App() {
         <section id="core-concepts">
           <h2>Core Concepts</h2>
           <ul>
-            <CoreConcept
-              title={CORE_CONCEPTS[0].title}
-              description={CORE_CONCEPTS[0].description}
-              image={CORE_CONCEPTS[0].image}
-            />
-            <CoreConcept
-              title={CORE_CONCEPTS[1].title}
-              description={CORE_CONCEPTS[1].description}
-              image={CORE_CONCEPTS[1].image}
-            />
-            <CoreConcept
-              title={CORE_CONCEPTS[2].title}
-              description={CORE_CONCEPTS[2].description}
-              image={CORE_CONCEPTS[2].image}
-            />
-            <CoreConcept
-              title={CORE_CONCEPTS[3].title}
-              description={CORE_CONCEPTS[3].description}
-              image={CORE_CONCEPTS[3].image}
-            />
-
-            {/* In React, you can use the spread operator to pass all the 
-            properties of an object as props to a component, provided that 
-            the property names match the prop names */}
-            <CoreConceptAlt {...CORE_CONCEPTS[0]} />
-            <CoreConceptAlt {...CORE_CONCEPTS[1]} />
-            <CoreConceptAlt {...CORE_CONCEPTS[2]} />
-            <CoreConceptAlt {...CORE_CONCEPTS[3]} />
+            {/* you can use the map function to iterate over an array and return a new array with the results of the function */}
+            {CORE_CONCEPTS.map((conceptItem) => <CoreConcept key={conceptItem.title} {...conceptItem} /> )}
           </ul>
         </section>
 
@@ -84,7 +58,7 @@ function App() {
             </TabButton>
             <TabButton isSelected={selectedTopic === 'jsx'} onSelect={() => handleSelect("jsx")}>JSX</TabButton>
             <TabButton isSelected={selectedTopic === 'props'} onSelect={() => handleSelect("props")}>Props</TabButton>
-            <TabButton isSelected={selectedTopic === 'components'} onSelect={() => handleSelect("state")}>State</TabButton>
+            <TabButton isSelected={selectedTopic === 'state'} onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
 
           {/* you can use the && operator to conditionally render elements */}
