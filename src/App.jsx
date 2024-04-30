@@ -7,33 +7,20 @@ import Header from "./components/Header/Header.jsx";
 import CoreConcept from "./components/CoreConcept/CoreConcept.jsx";
 import CoreConceptAlt from "./components/CoreConcept/CoreConceptAlt.jsx";
 import TabButton from "./components/TabButton/TabButton.jsx";
+import { EXAMPLES } from "./data.js";
 
 function App() {
-
-
-  // tabContent is a variable that is executed only once when the component is rendered. This is not a state variable so it will not re-render the component when it is updated. This is why the content does not change when the buttons are clicked.
-  let tabContent = 'Please click a button to view content.';
-
-  //Hooks need to be called at the top level of the component function, not within an inner function or block
-  //const stateArray = useState('Please click a button to view content.');
-  //You can use destructuring to assign the values of the array to variables
-  //You can set a default value for the state by passing it as an argument to useState
-  //The second element of the array is a function that can be used to update the state value
-  //This tells React to re-render the component with the new state value
   //we can use const to declare the state variable because we are not reassigning the variable, we are updating the value of the variable
-  const [selectedTopic, setSelectedTopic] = useState('Please click a button to view content.');
 
   //useState returns an array with two elements. The first element is the current state value and the second element is a function that can be used to update the state value.
+  const [selectedTopic, setSelectedTopic] = useState("components");
 
   function handleSelect(selectedButton) {
     //selected => 'components', 'JSX', 'props', or 'state
     console.log(selectedButton);
-    tabContent = selectedButton; //This will not update the component because it is not a state variable
 
     //This will update the component because it is a state variable
     setSelectedTopic(selectedButton);
-    console.log(selectedTopic);
-
   }
 
   return (
@@ -85,8 +72,14 @@ function App() {
             <TabButton onSelect={() => handleSelect("props")}>Props</TabButton>
             <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
-          <p>{tabContent} {/* This will not update because it is not a state variable */}</p>
-          <p>{selectedTopic} {/* This will update because it is a state variable */}</p>
+
+          <div id="tab-content">
+            <h3>{EXAMPLES[selectedTopic].title}</h3>
+            <p>{EXAMPLES[selectedTopic].description}</p>
+            <pre>
+              <code>{EXAMPLES[selectedTopic].code}</code>
+            </pre>
+          </div>
 
         </section>
       </main>
