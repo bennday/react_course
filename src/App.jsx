@@ -13,7 +13,7 @@ function App() {
   //we can use const to declare the state variable because we are not reassigning the variable, we are updating the value of the variable
 
   //useState returns an array with two elements. The first element is the current state value and the second element is a function that can be used to update the state value.
-  const [selectedTopic, setSelectedTopic] = useState("components");
+  const [selectedTopic, setSelectedTopic] = useState();
 
   function handleSelect(selectedButton) {
     //selected => 'components', 'JSX', 'props', or 'state
@@ -21,6 +21,20 @@ function App() {
 
     //This will update the component because it is a state variable
     setSelectedTopic(selectedButton);
+  }
+
+  let tabContent = <p>Please select a topic.</p>;
+
+  if (selectedTopic) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
+      </div>
+    );
   }
 
   return (
@@ -73,14 +87,51 @@ function App() {
             <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
 
-          <div id="tab-content">
-            <h3>{EXAMPLES[selectedTopic].title}</h3>
-            <p>{EXAMPLES[selectedTopic].description}</p>
-            <pre>
-              <code>{EXAMPLES[selectedTopic].code}</code>
-            </pre>
-          </div>
+          {/* you can use the && operator to conditionally render elements */}
+          {!selectedTopic ? <p>Please select a topic.</p> : null}
+          {selectedTopic ? (
+            <div id="tab-content">
+              <h3>{EXAMPLES[selectedTopic].title}</h3>
+              <p>{EXAMPLES[selectedTopic].description}</p>
+              <pre>
+                <code>{EXAMPLES[selectedTopic].code}</code>
+              </pre>
+            </div>
+          ) : null}
 
+          <hr />
+
+          {/*Alternatively, you can merge the two if statements into one by using the ternary operator */}
+          {!selectedTopic ? (
+            <p>Please select a topic.</p>
+          ) : (
+            <div id="tab-content">
+              <h3>{EXAMPLES[selectedTopic].title}</h3>
+              <p>{EXAMPLES[selectedTopic].description}</p>
+              <pre>
+                <code>{EXAMPLES[selectedTopic].code}</code>
+              </pre>
+            </div>
+          )}
+
+          <hr />
+
+          {/* you can use the && operator to conditionally render elements */}
+          {!selectedTopic && <p>Please select a topic.</p>}
+
+          {selectedTopic && (
+            <div id="tab-content">
+              <h3>{EXAMPLES[selectedTopic].title}</h3>
+              <p>{EXAMPLES[selectedTopic].description}</p>
+              <pre>
+                <code>{EXAMPLES[selectedTopic].code}</code>
+              </pre>
+            </div>
+          )}
+
+          <hr />
+          
+          {tabContent}
         </section>
       </main>
     </div>
