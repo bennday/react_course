@@ -34,6 +34,8 @@ export default function Examples() {
   return (
     <Section id="examples" title="Examples">
       <Tabs
+        // use string name of standard built in component, or pass a component using curly braces
+        ButtonsContainer="menu"
         buttons={
           <>
             <TabButton
